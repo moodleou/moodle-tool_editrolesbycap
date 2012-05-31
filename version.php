@@ -28,5 +28,6 @@ $plugin->version   = 2012032900;
 $plugin->requires  = 2011120500;
 $plugin->cron      = 0;
 $plugin->component = 'tool_editrolesbycap';
+$plugin->release   = 1.0;
 
-$plugin->maturity  = MATURITY_ALPHA;
+$plugin->maturity  = MATURITY_STABLE;
