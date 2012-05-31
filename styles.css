@@ -1,0 +1,21 @@
+#page-admin-tool-editrolesbycap-index select#id_cap {
+    width: 100%;
+}
+#page-admin-tool-editrolesbycap-index table.roledefs .c1 {
+    white-space: nowrap;
+}
+#page-admin-tool-editrolesbycap-index table.roledefs td.lastcol {
+    font-size: 0.7em;
+}
+#page-admin-tool-editrolesbycap-index .capdefault {
+    background-color: #DDDDDD;
+    border: 1px solid #CECECE;
+}
+#page-admin-tool-editrolesbycap-index .advancedbutton {
+    text-align: right;
+    margin: 0 0 0.7em;
+}
+#page-admin-tool-editrolesbycap-index .submitbutton {
+    text-align: center;
+    margin-bottom: 2em;
+}
