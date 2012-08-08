@@ -131,7 +131,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
     };
 
     M.tool_editrolesbycap.set_visible = function(element, visible) {
-        if (!Y.one('body.ie')) {
+        if (!Y.one('body.ie') && !Y.one('body.safari')) {
             if (visible) {
                 element.setStyle('display', 'block');
             } else {
