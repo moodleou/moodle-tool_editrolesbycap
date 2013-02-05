@@ -1,0 +1,25 @@
+1. As admin, go to Admin -> Users -> Permissions -> Edit roles by capability.
+
+2. In the filter box, try typing something like 'test'. The list of capabilities
+   should be filtered as you type to only show matching capabilites.
+
+3. Click the Clear button, and verify that clears the filter.
+
+4. Select a capability, and click Check and edit role definitions.
+
+5. The capability and it description and risks should be shown at the top of the
+   page. Under that should be a table, very like the edit role table, but with
+   one row per role, where you can see and change the permissions.
+
+6. Change some permissions and click Save changes. Ensure the chagnes are saved.
+
+7. Toggle show advanced, and ensure the alternative display (advanced or basic)
+   is also shown OK.
+
+8. Again, make some changes, click Save changes, and ensure the chagnes are saved.
+
+9. Looking at Select a different capability at the bottom of the screen, ensure
+   the filter text is still present.
+
+10. Select a different capability and click Check and edit role definitions.
+    Ensure that the UI switches to editing that different capability.

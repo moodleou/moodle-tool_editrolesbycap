@@ -2,6 +2,11 @@ Edit roles by capability tool
 
 Created by the Open University, UK.
 
+Normally, when you edit roles in Moodle, you select one role, and can then edit
+the permissions for all the capabilities for that role. This plugin presents an
+alterative interface. You can select one capability, and then edit the
+permissions for all roles for that capability.
+
 Install this plugin into the admin/tool folder, in a subfolder called
 editrolesbycap. You can do that using git as
 
