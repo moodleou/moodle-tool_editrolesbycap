@@ -202,7 +202,7 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
      */
     protected function add_permission_cells_advanced($row, $role) {
 
-        /// One cell for each possible permission.
+        // One cell for each possible permission.
         foreach ($this->permission_names() as $permission => $permissionname) {
             $output = '';
 

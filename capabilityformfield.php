@@ -74,7 +74,7 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
                     'tool_editrolesbycap', $a);
         }
 
-        // Remeber to add the currently open optgroup
+        // Remeber to add the currently open optgroup.
         if ($currentgroup) {
             $optgroups[$currentgroupname] = $currentgroup;
         }

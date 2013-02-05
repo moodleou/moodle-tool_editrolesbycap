@@ -21,12 +21,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
-    var ModulenameNAME = 'Capability form element type';
     var MODULENAME = function() {
         MODULENAME.superclass.constructor.apply(this, arguments);
-    }
+    };
     Y.extend(MODULENAME, Y.Base, {
-        initializer : function(config) {
+        initializer : function() {
         }
     }, {
         NAME : 'capabilityformfield',
@@ -55,7 +54,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
         // Create a label for the search input.
         this.label = Y.Node.create('<label for="'+this.input.get('id')+'">'+M.str.moodle.filter+' </label>');
         // Create a clear button to clear the input.
-        this.button = Y.Node.create('<input type="button" value="'+M.str.moodle.clear+'" />').set('disabled', filtervalue=='');
+        this.button = Y.Node.create('<input type="button" value="'+M.str.moodle.clear+'" />').set('disabled', filtervalue === '');
 
         // Tie it all together
         this.div.append(this.label).append(this.input).append(this.button);
@@ -71,7 +70,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
         this.input.on('keyup', this.change, this);
         this.button.on('click', this.clear, this);
 
-        if (filtervalue != '') {
+        if (filtervalue !== '') {
             this.filter();
         }
 
@@ -88,7 +87,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
         var cookie = {
             flttime : new Date().getTime(),
             fltvalue : value
-        }
+        };
         Y.Cookie.setSubs("captblflt", cookie);
     };
 
@@ -100,7 +99,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
      */
     M.tool_editrolesbycap.get_filter_cookie = function() {
         var cookie = Y.Cookie.getSubs('captblflt');
-        if (cookie!=null && parseInt(cookie.flttime) > new Date().getTime()-(60*60*1000)) {
+        if (cookie !== null && parseInt(cookie.flttime, 10) > new Date().getTime() - (60*60*1000)) {
             return cookie.fltvalue;
         }
         return '';
@@ -111,7 +110,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
      */
     M.tool_editrolesbycap.clear = function() {
         this.input.set('value', '');
-        if (this.delayhandle != -1) {
+        if (this.delayhandle !== -1) {
             clearTimeout(this.delayhandle);
             this.delayhandle = -1;
         }
@@ -124,7 +123,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
     M.tool_editrolesbycap.change = function() {
         var self = this;
         var handle = setTimeout(function(){self.filter();}, this.searchdelay);
-        if (this.delayhandle != -1) {
+        if (this.delayhandle !== -1) {
             clearTimeout(this.delayhandle);
         }
         this.delayhandle = handle;
@@ -162,7 +161,7 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
 
         this.set_filter_cookie(filtertext);
 
-        this.button.set('disabled', (filtertext == ''));
+        this.button.set('disabled', (filtertext === ''));
 
         var allhidden = true;
         this.select.all('optgroup').each(function(optgroup) {
@@ -183,8 +182,8 @@ YUI.add('moodle-tool_editrolesbycap-capabilityformfield', function(Y) {
         if (allhidden) {
             this.set_visible(this.nonemessage, true);
         }
-    }
+    };
 
-  }, '@VERSION@', {
-      requires:['base', 'dom', 'event', 'cookie']
-  });
+}, '@VERSION@', {
+    requires:['base', 'dom', 'event', 'cookie']
+});
