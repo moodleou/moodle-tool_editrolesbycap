@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-if (has_capability('moodle/role:manage', $systemcontext)) {
+if (has_capability('moodle/role:manage', context_system::instance())) {
     $ADMIN->add('roles', new admin_externalpage('tooleditrolesbycap',
             get_string('pluginname', 'tool_editrolesbycap'),
             new moodle_url('/admin/tool/editrolesbycap/index.php'),
