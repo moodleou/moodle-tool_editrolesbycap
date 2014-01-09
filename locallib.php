@@ -46,6 +46,7 @@ class tool_editrolesbycap_capability_form extends moodleform {
         }
 
         $this->_form->addElement('capability', 'cap', $label, array("size" => 10));
+        $this->_form->addRule('cap', null, 'required', null, 'client');
 
         $this->add_action_buttons(false, get_string('checkandeditroles', 'tool_editrolesbycap'));
     }
