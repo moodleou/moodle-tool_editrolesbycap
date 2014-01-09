@@ -11,6 +11,7 @@ Install this plugin into the admin/tool folder, in a subfolder called
 editrolesbycap. You can do that using git as
 
     git clone git://github.com/moodleou/moodle-tool_editrolesbycap.git admin/tool/editrolesbycap
+    echo '/admin/tool/editrolesbycap/' >> .git/info/exclude
 
 You will get a new entry under Site administration -> Users -> Permissions that
 lets you select a capability, and then edit the permission for that capability
