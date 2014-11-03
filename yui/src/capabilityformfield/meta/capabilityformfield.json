@@ -1,0 +1,10 @@
+{
+    "moodle-tool_editrolesbycap-capabilityformfield": {
+        "requires": [
+            "base",
+            "dom",
+            "event",
+            "cookie"
+        ]
+    }
+}

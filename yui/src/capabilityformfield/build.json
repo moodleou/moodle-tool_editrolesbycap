@@ -1,0 +1,10 @@
+{
+    "name": "moodle-tool_editrolesbycap-capabilityformfield",
+    "builds": {
+        "moodle-tool_editrolesbycap-capabilityformfield": {
+            "jsfiles": [
+                "capabilityformfield.js"
+            ]
+        }
+    }
+}
