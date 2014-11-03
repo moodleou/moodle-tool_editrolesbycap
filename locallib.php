@@ -98,6 +98,8 @@ function tool_editrolesbycap_load_role_definitions($capability) {
                 'syscontextid' => context_system::instance()->id));
 
     foreach ($data as $role) {
+        $role->name = role_get_name($role);
+        $role->description = role_get_description($role);
         $role->defaultpermission = tool_editrolesbycap_get_default_permission($role, $capability);
     }
 
