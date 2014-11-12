@@ -17,17 +17,16 @@
 /**
  * Version details for the edit roles by capability tool.
  *
- * @package    tool_editrolesbycap
- * @copyright  2012 The Open University
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   tool_editrolesbycap
+ * @copyright 2012 The Open University
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2014010900;
-$plugin->requires  = 2011120500;
+$plugin->version   = 2014111200;
+$plugin->requires  = 2013101800;
 $plugin->cron      = 0;
 $plugin->component = 'tool_editrolesbycap';
-$plugin->release   = 'Version 1.2 for Moodle 2.2+';
-
 $plugin->maturity  = MATURITY_STABLE;
+$plugin->release   = '1.3 for Moodle 2.6+';
