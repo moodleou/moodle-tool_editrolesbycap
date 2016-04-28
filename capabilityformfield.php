@@ -33,7 +33,7 @@ require_once($CFG->libdir . '/form/selectgroups.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
-    public function MoodleQuickForm_capability($elementname = null, $elementlabel = null,
+    public function __construct($elementname = null, $elementlabel = null,
             $attributes = array(), $showchoose = false) {
 
         parent::__construct($elementname, $elementlabel,
