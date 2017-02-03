@@ -20,10 +20,6 @@ Feature: Test all the basic functionality of this admin tool
     # Then "Flag questions while attempting them (moodle/question:flag)" "option" should be visible
     # And "Edit your own questions (moodle/question:editmine)" "option" should be visible
 
-    # Try to go to the next page without selecting a 
-    When I press "Check and edit role definitions"
-    Then I should see "You must supply a value here."
-
     # Select an option and go to the next page.
     When I set the field "Select a capability" to "Flag questions while attempting them (moodle/question:flag)"
     And I press "Check and edit role definitions"
