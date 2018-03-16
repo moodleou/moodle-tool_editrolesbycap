@@ -1,66 +1,62 @@
-sudo: false
 language: php
+
+sudo: required
+
+addons:
+  firefox: "47.0.1"
+  postgresql: "9.3"
+  apt:
+    packages:
+      - oracle-java8-installer
+      - oracle-java8-set-default
+      - chromium-chromedriver
 
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.npm
 
 matrix:
   include:
-    - php: 5.4
-      env: TASK=BEHAT          MOODLE_BRANCH=MOODLE_27_STABLE   DB=mysqli
+    - php: 7.2
+      env:
+      - MOODLE_BRANCH=master
+      - DB=mysqli
 
-    - php: 5.5
-      env: TASK=BEHAT          MOODLE_BRANCH=MOODLE_30_STABLE   DB=pgsql
-
-    - php: 5.6
-      env: TASK=BEHAT          MOODLE_BRANCH=MOODLE_31_STABLE   DB=mysqli
-
-    - php: 7.0
-      env: TASK=BEHAT          MOODLE_BRANCH=MOODLE_32_STABLE   DB=pgsql
+    - php: 7.1
+      env:
+      - MOODLE_BRANCH=MOODLE_34_STABLE
+      - DB=pgsql
 
     - php: 7.0
-      env: TASK=CODESTYLE      MOODLE_BRANCH=MOODLE_31_STABLE   DB=pgsql
+      env:
+      - MOODLE_BRANCH=MOODLE_33_STABLE
+      - DB=mysqli
 
     - php: 7.0
-      env: TASK=CODEKNOWNFAILS MOODLE_BRANCH=MOODLE_32_STABLE   DB=pgsql
-
-  allow_failures:
-    - php: 7.0
-      env: TASK=CODEKNOWNFAILS MOODLE_BRANCH=MOODLE_32_STABLE   DB=pgsql
+      env:
+      - MOODLE_BRANCH=MOODLE_32_STABLE
+      - DB=pgsql
 
 before_install:
   - phpenv config-rm xdebug.ini
+  - nvm install 8.9
+  - nvm use 8.9
   - cd ../..
-  - composer selfupdate
-  - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^1
+  - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^2
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
-  - mkdir behat_output
 
 install:
   - moodle-plugin-ci install
 
-  # Prepare to capture Behat failures.
-  - moodle-plugin-ci add-config '$CFG->behat_faildump_path = "'`pwd`'/behat_output";'
-
 script:
-  # Run all the PHP unit tests.
-  - if [ "$TASK" = 'PHPUNIT' ];        then moodle-plugin-ci phpunit;     fi
-
-  # Run all the Behat tests.
-  - if [ "$TASK" = 'BEHAT' ];          then moodle-plugin-ci behat;       fi
-  # The next line dumps the HTML of any failures to stdout. Not nice, but sufficient for now.
-  - if [ "$TASK" = 'BEHAT' ];          then find behat_output -name '*.html' -type f -print -exec cat {} \; ; fi
-
-  # Run all the various code style tests - this subset should all pass.
-  - if [ "$TASK" = 'CODESTYLE' ];      then moodle-plugin-ci phplint;     fi
-  - if [ "$TASK" = 'CODESTYLE' ];      then moodle-plugin-ci phpmd;       fi
-  - if [ "$TASK" = 'CODESTYLE' ];      then moodle-plugin-ci csslint;     fi
-  - if [ "$TASK" = 'CODESTYLE' ];      then moodle-plugin-ci shifter;     fi
-  - if [ "$TASK" = 'CODESTYLE' ];      then moodle-plugin-ci validate;    fi
-
-  # Run all the various code style tests - these ones are konwn to fail.
-  # Once we get them passing, move them to the CODESTYLE section above.
-  - if [ "$TASK" = 'CODEKNOWNFAILS' ]; then moodle-plugin-ci phpcpd;      fi
-  - if [ "$TASK" = 'CODEKNOWNFAILS' ]; then moodle-plugin-ci codechecker; fi
-  - if [ "$TASK" = 'CODEKNOWNFAILS' ]; then moodle-plugin-ci jshint;      fi
+  - moodle-plugin-ci phplint
+  - moodle-plugin-ci phpcpd
+  # - moodle-plugin-ci phpmd
+  - moodle-plugin-ci codechecker
+  - moodle-plugin-ci validate
+  - moodle-plugin-ci savepoints
+  - moodle-plugin-ci mustache
+  - moodle-plugin-ci grunt
+  - moodle-plugin-ci phpunit
+  - moodle-plugin-ci behat --profile chrome
