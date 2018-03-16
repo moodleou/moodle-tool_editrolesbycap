@@ -83,8 +83,7 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
         return $optgroups;
     }
 
-    // @codingStandardsIgnoreLine
-    public function toHtml() {
+    protected function setup_javascript() {
         global $PAGE;
         $this->_generateId();
         if (!$this->_flagFrozen) {
@@ -95,6 +94,16 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
                     'M.tool_editrolesbycap.init_capabilityformfield',
                     array('#' . $this->getAttribute('id')));
         }
+    }
+
+    // @codingStandardsIgnoreLine
+    public function toHtml() {
+        $this->setup_javascript();
         return parent::toHtml();
+    }
+
+    public function export_for_template(renderer_base $output) {
+        $this->setup_javascript();
+        return parent::export_for_template($output);
     }
 }

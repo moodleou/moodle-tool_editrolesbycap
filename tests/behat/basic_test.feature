@@ -12,13 +12,13 @@ Feature: Test all the basic functionality of this admin tool
     Then I should see "Select a capability"
 
     # Test JS filtering.
-    # This part is currently failing, so commented out.
-    # When I set the field "Filter" to "question:flag"
-    # Then "Flag questions while attempting them (moodle/question:flag)" "option" should be visible
+    When I set the field "Filter" to "question:flag"
+    Then "Flag questions while attempting them (moodle/question:flag)" "option" should be visible
+    # Following line currently fails spuriously, so commenting out.
     # And "Edit your own questions (moodle/question:editmine)" "option" should not be visible
-    # When I press "Clear"
-    # Then "Flag questions while attempting them (moodle/question:flag)" "option" should be visible
-    # And "Edit your own questions (moodle/question:editmine)" "option" should be visible
+    When I press "Clear"
+    Then "Flag questions while attempting them (moodle/question:flag)" "option" should be visible
+    And "Edit your own questions (moodle/question:editmine)" "option" should be visible
 
     # Select an option and go to the next page.
     When I set the field "Select a capability" to "Flag questions while attempting them (moodle/question:flag)"
