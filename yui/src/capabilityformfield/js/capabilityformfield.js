@@ -46,7 +46,7 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
         return;
     }
 
-    // Get any existing filter value
+    // Get any existing filter value.
     var filtervalue = this.get_filter_cookie();
 
     // Create a div to hold the search UI.
@@ -65,17 +65,17 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
     this.button = Y.Node.create('<input type="button" value="' + M.str.moodle.clear +
             '" />').set('disabled', filtervalue === '');
 
-    // Tie it all together
+    // Tie it all together.
     this.div.append(this.label).append(this.input).append(this.button);
 
-    // Insert it into the div
+    // Insert it into the div.
     this.select.ancestor().append(this.div);
 
     this.nonemessage = Y.Node.create('<optgroup label="' + M.str.tool_editrolesbycap.nonematch + '"></optgroup>');
     this.select.append(this.nonemessage);
     this.set_visible(this.nonemessage, false);
 
-    // Wire the events so it actually does something
+    // Wire the events so it actually does something.
     this.input.on('keyup', this.change, this);
     this.button.on('click', this.clear, this);
 
@@ -149,7 +149,7 @@ M.tool_editrolesbycap.set_visible = function(element, visible) {
         // This is a deeply evil hack to make the filtering work in IE.
         // IE ignores display: none; on select options, but wrapping the
         // option in a span does seem to hide the option.
-        // Thanks http://work.arounds.org/issue/96/option-elements-do-not-hide-in-IE/
+        // Thanks http://work.arounds.org/issue/96/option-elements-do-not-hide-in-IE/.
         if (visible) {
             if (element.get('parentNode').test('span')) {
                 element.unwrap();
@@ -175,7 +175,7 @@ M.tool_editrolesbycap.filter = function() {
     var allhidden = true;
     this.select.all('optgroup').each(function(optgroup) {
         this.set_visible(optgroup, false);
-        lastgroup = optgroup;
+        var lastgroup = optgroup;
 
         optgroup.all('option').each(function(option) {
             var capname = option.get('text').toLowerCase();

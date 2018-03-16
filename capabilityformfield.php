@@ -22,6 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/form/selectgroups.php');
 
@@ -82,6 +83,7 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
         return $optgroups;
     }
 
+    // @codingStandardsIgnoreLine
     public function toHtml() {
         global $PAGE;
         $this->_generateId();
