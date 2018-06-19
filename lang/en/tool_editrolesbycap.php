@@ -33,3 +33,4 @@ $string['roledescription'] = 'Role description';
 $string['rolenameandshortname'] = '{$a->name} ({$a->shortname})';
 $string['selectacapability'] = 'Select a capability';
 $string['selectadifferentcapability'] = 'Select a different capability';
+$string['privacy:metadata:preference:definerole_showadvanced'] = 'Define role show advanced preference';
