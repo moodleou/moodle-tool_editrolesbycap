@@ -31,11 +31,11 @@ var MODULENAME = function() {
     MODULENAME.superclass.constructor.apply(this, arguments);
 };
 Y.extend(MODULENAME, Y.Base, {
-    initializer : function() {
+    initializer: function() {
     }
 }, {
-    NAME : 'capabilityformfield',
-    ATTRS : {}
+    NAME: 'capabilityformfield',
+    ATTRS: {}
 });
 
 M.tool_editrolesbycap = M.tool_editrolesbycap || {};
@@ -51,18 +51,18 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
 
     // Create a div to hold the search UI.
     this.div = Y.Node.create('<div class="capabilitysearchui"></div>').setStyles({
-        width : this.select.get('offsetWidth'),
-        marginLeft : 'auto',
-        marginRight : 'auto'
+        width: this.select.get('offsetWidth'),
+        marginLeft: 'auto',
+        marginRight: 'auto'
     });
     // Create the capability search input.
     this.input = Y.Node.create('<input type="text" id="' + this.select.get('id') +
             'capabilitysearch" value="' + filtervalue + '" />');
     // Create a label for the search input.
     this.label = Y.Node.create('<label for="' + this.input.get('id') + '">' +
-            M.str.moodle.filter + ' </label>');
+            M.util.get_string('filter', 'moodle') + ' </label>');
     // Create a clear button to clear the input.
-    this.button = Y.Node.create('<input type="button" value="' + M.str.moodle.clear +
+    this.button = Y.Node.create('<input type="button" value="' + M.util.get_string('clear', 'moodle') +
             '" />').set('disabled', filtervalue === '');
 
     // Tie it all together.
@@ -71,7 +71,8 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
     // Insert it into the div.
     this.select.ancestor().append(this.div);
 
-    this.nonemessage = Y.Node.create('<optgroup label="' + M.str.tool_editrolesbycap.nonematch + '"></optgroup>');
+    this.nonemessage = Y.Node.create('<optgroup label="' +
+            M.util.get_string('nonematch', 'tool_editrolesbycap') + '"></optgroup>');
     this.select.append(this.nonemessage);
     this.set_visible(this.nonemessage, false);
 
@@ -83,7 +84,7 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
         this.filter();
     }
 
-    return new MODULENAME({});
+    MODULENAME({});
 };
 
 /**
@@ -91,11 +92,13 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
  * The cookie stores the context, and the time it was created and upon
  * retrieval is checked to ensure that the cookie is for the correct
  * context and is no more than an hour old.
+ *
+ * @param {String} value the value to store in the cookie.
  */
 M.tool_editrolesbycap.set_filter_cookie = function(value) {
     var cookie = {
-        flttime : new Date().getTime(),
-        fltvalue : value
+        flttime: new Date().getTime(),
+        fltvalue: value
     };
     Y.Cookie.setSubs("captblflt", cookie);
 };
@@ -105,6 +108,8 @@ M.tool_editrolesbycap.set_filter_cookie = function(value) {
  * The cookie stores the context, and the time it was created and upon
  * retrieval is checked to ensure that the cookie is for the correct
  * context and is no more than an hour old.
+ *
+ * @return {String} value the value from the cookie.
  */
 M.tool_editrolesbycap.get_filter_cookie = function() {
     var cookie = Y.Cookie.getSubs('captblflt');
@@ -131,7 +136,9 @@ M.tool_editrolesbycap.clear = function() {
  */
 M.tool_editrolesbycap.change = function() {
     var self = this;
-    var handle = setTimeout(function(){self.filter();}, this.searchdelay);
+    var handle = setTimeout(function() {
+            self.filter();
+        }, this.searchdelay);
     if (this.delayhandle !== -1) {
         clearTimeout(this.delayhandle);
     }

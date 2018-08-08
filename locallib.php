@@ -53,7 +53,13 @@ class tool_editrolesbycap_capability_form extends moodleform {
     }
 }
 
-
+/**
+ * Get what would be the default setting for this capability for this role.
+ *
+ * @param object $role the role.
+ * @param object $capability the capability.
+ * @return int one of the CAP_... constants.
+ */
 function tool_editrolesbycap_get_default_permission($role, $capability) {
     static $cache = array();
 
@@ -76,6 +82,8 @@ function tool_editrolesbycap_get_default_permission($role, $capability) {
 }
 
 /**
+ * Load all system-context role_capabilities for a give capability.
+ *
  * @param stdClass $capability the information about a capability.
  * @return array role shortname => object with fields (role) shortname, (role) name,
  *      (role) description and permission (for this capability for that role).

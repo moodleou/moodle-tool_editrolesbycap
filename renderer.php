@@ -35,7 +35,8 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
 
     /**
      * Render the tool before a capability has been selected.
-     * @param moodleform $form the form that lets the user select a capability.
+     *
+     * @param tool_editrolesbycap_capability_form $form the form that lets the user select a capability.
      * @return string the HTML to output.
      */
     public function index_page_no_capability(tool_editrolesbycap_capability_form $form) {
@@ -279,7 +280,9 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
     }
 
     /**
-     * @return array CAP_... constant to permission name string.
+     * Get an array of conversions from the internal constants to the human-readable strings.
+     *
+     * @return array CAP_... constant => permission name string.
      */
     protected function permission_names() {
         static $permissionnames = null;
@@ -296,7 +299,8 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
 
     /**
      * Get a permission name for display.
-     * @param int one of the CAP_... constants.
+     *
+     * @param int $permission one of the CAP_... constants.
      * @return string the permission name.
      */
     protected function permission_name($permission) {
@@ -306,7 +310,8 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
 
     /**
      * Render a capabilitiy name, including docs link, internal name and risk icons.
-     * @param unknown_type $capability
+     *
+     * @param object $capability the capability.
      * @return string the HTML to output.
      */
     protected function capability_name_full($capability) {

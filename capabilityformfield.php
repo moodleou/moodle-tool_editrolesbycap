@@ -17,7 +17,8 @@
 /**
  * A formslib field type for selecting one capability.
  *
- * @package    core_form
+ * @package    tool_editrolesbycap
+ * @category   form
  * @copyright  2012 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -41,6 +42,11 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
                 $this->get_capabitity_optgroups(), $attributes, $showchoose);
     }
 
+    /**
+     * Get the opt groups to display in the select.
+     *
+     * @return array opt group name => option value => option label.
+     */
     protected function get_capabitity_optgroups() {
         if (!empty($this->_optGroups)) {
             // I have absolutely no idea why this is necessary, but it does seem to be.
@@ -83,6 +89,9 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
         return $optgroups;
     }
 
+    /**
+     * Initialise the JavaScript for this form control.
+     */
     protected function setup_javascript() {
         global $PAGE;
         $this->_generateId();
