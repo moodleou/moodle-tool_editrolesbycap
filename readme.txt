@@ -8,7 +8,8 @@ the permissions for all the capabilities for that role. This plugin presents an
 alterative interface. You can select one capability, and then edit the
 permissions for all roles for that capability.
 
-This is version 1.5 of this plugin, which works with Moodle 3.2+.
+This version of the plugin, which is compatible with Moodle 3.4 and later.
+Older versions of this plugin will work with older Moodle versions.
 
 Install this plugin into the admin/tool folder, in a subfolder called
 editrolesbycap. You can do that using git as
