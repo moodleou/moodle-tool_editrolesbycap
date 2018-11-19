@@ -8,7 +8,7 @@ Feature: Test all the basic functionality of this admin tool
   Scenario: Find a capability, and edit the permissions for it.
     # Go to the first page, where there is a form to select a capability.
     Given I log in as "admin"
-    When I navigate to "Edit roles by capability" node in "Site administration > Users > Permissions"
+    And I navigate to "Users > Permissions > Edit roles by capability" in site administration
     Then I should see "Select a capability"
 
     # Test JS filtering.
@@ -46,7 +46,7 @@ Feature: Test all the basic functionality of this admin tool
     And I should see "Prohibit"
 
     # Preferred view should be remembered as a user preference.
-    When I navigate to "Edit roles by capability" node in "Site administration > Users > Permissions"
+    And I navigate to "Users > Permissions > Edit roles by capability" in site administration
     And I set the field "Select a capability" to "Flag questions while attempting them (moodle/question:flag)"
     And I press "Check and edit role definitions"
     Then I should see "Edit role definitions for capability Flag questions while attempting them (moodle/question:flag)"
