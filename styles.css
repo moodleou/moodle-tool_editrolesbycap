@@ -1,6 +1,10 @@
 #page-admin-tool-editrolesbycap-index select#id_cap {
     width: 100%;
 }
+#page-admin-tool-editrolesbycap-index .capabilitysearchui label {
+    display: inline;
+}
+
 #page-admin-tool-editrolesbycap-index table.roledefs .c1 {
     white-space: nowrap;
 }
