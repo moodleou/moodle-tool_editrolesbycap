@@ -1,6 +1,11 @@
 # Change log for the Edit roles by capability tool
 
 
+## Changes in 1.8
+
+* Small styling improvements.
+
+
 ## Changes in 1.7
 
 * Fix Behat to work in Moodle 3.6.

@@ -52,19 +52,19 @@ M.tool_editrolesbycap.init_capabilityformfield = function(selector) {
     var filtervalue = this.get_filter_cookie();
 
     // Create a div to hold the search UI.
-    this.div = Y.Node.create('<div class="capabilitysearchui"></div>').setStyles({
+    this.div = Y.Node.create('<div class="capabilitysearchui form-inline m-t-1"></div>').setStyles({
         width: this.select.get('offsetWidth'),
         marginLeft: 'auto',
         marginRight: 'auto'
     });
     // Create the capability search input.
     this.input = Y.Node.create('<input type="text" id="' + this.select.get('id') +
-            'capabilitysearch" value="' + filtervalue + '" />');
+            'capabilitysearch" class="form-control" value="' + filtervalue + '" />');
     // Create a label for the search input.
     this.label = Y.Node.create('<label for="' + this.input.get('id') + '">' +
             M.util.get_string('filter', 'moodle') + ' </label>');
     // Create a clear button to clear the input.
-    this.button = Y.Node.create('<input type="button" value="' + M.util.get_string('clear', 'moodle') +
+    this.button = Y.Node.create('<input type="button" class="btn btn-secondary" value="' + M.util.get_string('clear', 'moodle') +
             '" />').set('disabled', filtervalue === '');
 
     // Tie it all together.
