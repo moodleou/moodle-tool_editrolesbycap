@@ -244,6 +244,7 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
         $attributes = array(
             'type'  => 'submit',
             'name'  => 'toggleadvanced',
+            'class'  => 'btn btn-secondary',
         );
 
         if ($showadvanced) {
@@ -273,6 +274,7 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
             'type'  => 'submit',
             'name'  => 'savechanges',
             'value' => get_string('savechanges'),
+            'class'  => 'btn btn-primary',
         );
         $ouput .= html_writer::empty_tag('input', $attributes);
 
