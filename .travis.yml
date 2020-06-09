@@ -1,14 +1,14 @@
 language: php
 
-dist: bionic
-sudo: required
+os: linux
+dist: xenial
 
 services:
   - mysql
+  - postgresql
 
 addons:
   firefox: "47.0.1"
-  postgresql: "9.6"
   apt:
     packages:
       - openjdk-8-jre-headless
@@ -19,32 +19,51 @@ cache:
     - $HOME/.composer/cache
     - $HOME/.npm
 
-matrix:
+jobs:
   include:
+    - php: 7.4
+      env:
+        - MOODLE_BRANCH=master
+        - DB=mysqli
+        - DIFFERENT_GRUNT=yes
+
     - php: 7.3
       env:
-      - MOODLE_BRANCH=master
-      - DB=pgsql
+        - MOODLE_BRANCH=MOODLE_38_STABLE
+        - DB=pgsql
 
     - php: 7.2
       env:
-      - MOODLE_BRANCH=MOODLE_37_STABLE
-      - DB=mysqli
+        - MOODLE_BRANCH=MOODLE_37_STABLE
+        - DB=mysqli
+        - DIFFERENT_GRUNT=yes
 
     - php: 7.1
       env:
-      - MOODLE_BRANCH=MOODLE_36_STABLE
-      - DB=pgsql
+        - MOODLE_BRANCH=MOODLE_36_STABLE
+        - DB=pgsql
+        - NODE=8.9
+        - DIFFERENT_GRUNT=yes
 
     - php: 7.1
       env:
         - MOODLE_BRANCH=MOODLE_35_STABLE
         - DB=mysqli
+        - DIFFERENT_GRUNT=yes
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - nvm install 8.9
-  - nvm use 8.9
+
+  - if [ -z $DIFFERENT_GRUNT ]; then
+      export DIFFERENT_GRUNT=no;
+    fi
+
+  - if [ -z $NODE ]; then
+      export NODE=14;
+    fi
+  - nvm install $NODE
+  - nvm use $NODE
+
   - cd ../..
   - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^2
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
@@ -60,6 +79,6 @@ script:
   - moodle-plugin-ci validate
   - moodle-plugin-ci savepoints
   - moodle-plugin-ci mustache
-  - moodle-plugin-ci grunt || [ "$MOODLE_BRANCH" = 'master' ]
+  - moodle-plugin-ci grunt || [ "$DIFFERENT_GRUNT" = 'yes' ]
   - moodle-plugin-ci phpunit
   - moodle-plugin-ci behat
