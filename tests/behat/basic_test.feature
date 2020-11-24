@@ -25,7 +25,7 @@ Feature: Test all the basic functionality of this admin tool
     And I press "Check and edit role definitions"
     Then I should see "Edit role definitions for capability Flag questions while attempting them (moodle/question:flag)"
     And I should see "Manager (manager)"
-    And I should see "Managers can access course and modify them, they usually do not participate in courses."
+    And I should see "Managers can access courses and modify them, but usually do not participate in them."
     And the field "manager" matches value "1"
     And the field "coursecreator" matches value "0"
 
