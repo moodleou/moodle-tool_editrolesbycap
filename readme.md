@@ -1,4 +1,4 @@
-# Edit roles by capability tool [![Build Status](https://travis-ci.com/moodleou/moodle-tool_editrolesbycap.svg?branch=master)](https://travis-ci.com/moodleou/moodle-tool_editrolesbycap)
+# Edit roles by capability tool
 
 Normally, when you edit roles in Moodle, you select one role, and can then edit
 the permissions for all the capabilities for that role. This plugin presents an
