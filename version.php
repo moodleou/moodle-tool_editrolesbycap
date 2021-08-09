@@ -24,11 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2019110800;
-$plugin->requires  = 2018051700;
+$plugin->version   = 2021080900;
+$plugin->requires  = 2020061500;
 $plugin->cron      = 0;
 $plugin->component = 'tool_editrolesbycap';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.8 for Moodle 3.5+';
+$plugin->release   = '1.9 for Moodle 3.9+';
 
 $plugin->outestssufficient = true;
