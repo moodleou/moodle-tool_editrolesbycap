@@ -36,7 +36,7 @@ require_once($CFG->libdir . '/form/selectgroups.php');
  */
 class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
     public function __construct($elementname = null, $elementlabel = null,
-            $attributes = array(), $showchoose = false) {
+            $attributes = [], $showchoose = false) {
 
         parent::__construct($elementname, $elementlabel,
                 $this->get_capabitity_optgroups(), $attributes, $showchoose);
@@ -47,29 +47,30 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
      *
      * @return array opt group name => option value => option label.
      */
-    protected function get_capabitity_optgroups() {
+    protected function get_capabitity_optgroups(): array {
         if (!empty($this->_optGroups)) {
-            // I have absolutely no idea why this is necessary, but it does seem to be.
-            // Bloody formslib. Somehow it is calling the constructor twice.
-            return array();
+            // I have no idea why this is necessary, but it does seem to be.
+            // Somehow it is calling the constructor twice.
+            return [];
         }
 
-        $optgroups = array();
+        $optgroups = [];
         $capabilities = context_system::instance()->get_capabilities();
 
         $contextlevel = 0;
         $component = '';
-        $currentgroup = array();
+        $currentgroup = [];
         $currentgroupname = '';
         foreach ($capabilities as $capability) {
-            // Start a new optgroup if the componentname or context level has changed.
+            // Start a new or resume an existing optgroup if
+            // the componentname or context level has changed.
             if (component_level_changed($capability, $component, $contextlevel)) {
                 if ($currentgroup) {
                     $optgroups[$currentgroupname] = $currentgroup;
                 }
-                $currentgroup = array();
                 $currentgroupname = context_helper::get_level_name($capability->contextlevel) . ': ' .
                         get_component_string($capability->component, $capability->contextlevel);
+                $currentgroup = $optgroups[$currentgroupname] ?? [];
             }
             $contextlevel = $capability->contextlevel;
             $component = $capability->component;
@@ -92,7 +93,7 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
     /**
      * Initialise the JavaScript for this form control.
      */
-    protected function setup_javascript() {
+    protected function setup_javascript(): void {
         global $PAGE;
         $this->_generateId();
         if (!$this->_flagFrozen) {
@@ -101,17 +102,17 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
             $PAGE->requires->string_for_js('clear', 'moodle');
             $PAGE->requires->yui_module('moodle-tool_editrolesbycap-capabilityformfield',
                     'M.tool_editrolesbycap.init_capabilityformfield',
-                    array('#' . $this->getAttribute('id')));
+                    ['#' . $this->getAttribute('id')]);
         }
     }
 
     // @codingStandardsIgnoreLine
-    public function toHtml() {
+    public function toHtml(): string {
         $this->setup_javascript();
         return parent::toHtml();
     }
 
-    public function export_for_template(renderer_base $output) {
+    public function export_for_template(renderer_base $output): array {
         $this->setup_javascript();
         return parent::export_for_template($output);
     }
