@@ -1,6 +1,11 @@
 # Change log for the Edit roles by capability tool
 
 
+## Changes in 2.0
+
+* Re-build the JavaScript with the latest version grunt.
+
+
 ## Changes in 1.9
 
 * Fixed a bug which caused not all capabilities to appear in the list.

@@ -17,8 +17,6 @@ This plugin was created by the Open University, UK. http://www.open.ac.uk/
 
 ## Installation and set-up
 
-This plugin should be compatible with Moodle 3.4+.
-
 ### Install from the plugins database
 
 See https://moodle.org/plugins/tool_editrolesbycap.
