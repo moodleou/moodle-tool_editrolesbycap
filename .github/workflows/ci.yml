@@ -8,8 +8,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php: '7.4'
+          - php: '8.0'
             moodle-branch: 'master'
+            database: 'pgsql'
+          - php: '8.0'
+            moodle-branch: 'MOODLE_401_STABLE'
+            database: 'mariadb'
+          - php: '7.4'
+            moodle-branch: 'MOODLE_400_STABLE'
             database: 'pgsql'
           - php: '7.4'
             moodle-branch: 'MOODLE_311_STABLE'
@@ -23,7 +29,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10
+        image: postgres:13
         env:
           POSTGRES_USER: 'postgres'
           POSTGRES_HOST_AUTH_METHOD: 'trust'
@@ -36,7 +42,7 @@ jobs:
           - 5432:5432
 
       mariadb:
-        image: mariadb:10.5
+        image: mariadb:10
         env:
           MYSQL_USER: 'root'
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
