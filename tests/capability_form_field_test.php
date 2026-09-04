@@ -33,7 +33,6 @@ require_once($CFG->dirroot . '/admin/tool/editrolesbycap/capabilityformfield.php
  * @coversDefaultClass \core\context_helper
  */
 final class capability_form_field_test extends advanced_testcase {
-
     /**
      * Tests that a required capability is included in the correct capability group.
      *
@@ -48,10 +47,11 @@ final class capability_form_field_test extends advanced_testcase {
         foreach ($field->_optGroups as $group) {
             if ($group['attr']['label'] == $groupname) {
                 $hvpcourselevelcaps = array_map(
-                        function($a) {
-                            return $a['attr']['value'];
-                        },
-                        $group['options']);
+                    function ($a) {
+                        return $a['attr']['value'];
+                    },
+                    $group['options']
+                );
                 break;
             }
         }

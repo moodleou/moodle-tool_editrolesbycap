@@ -54,7 +54,9 @@ if ($capability) {
 admin_externalpage_setup('tooleditrolesbycap', '', $params);
 
 $form = new tool_editrolesbycap_capability_form(
-        new moodle_url('/admin/tool/editrolesbycap/index.php'), $params);
+    new moodle_url('/admin/tool/editrolesbycap/index.php'),
+    $params
+);
 $form->set_data($params);
 
 if ($data = $form->get_data()) {
@@ -76,8 +78,13 @@ if ($capability) {
             $newpermission = optional_param($role->shortname, null, PARAM_PERMISSION);
 
             if ($savechanges && $newpermission != $role->permission) {
-                assign_capability($capability->name, $newpermission,
-                        $role->roleid, $context->id, true);
+                assign_capability(
+                    $capability->name,
+                    $newpermission,
+                    $role->roleid,
+                    $context->id,
+                    true
+                );
             }
 
             $role->permission = $newpermission;
@@ -90,7 +97,6 @@ if ($capability) {
     }
 
     echo $renderer->index_page_capability_selected($form, $capability, $roledata, $showadvanced);
-
 } else {
     echo $renderer->index_page_no_capability($form);
 }

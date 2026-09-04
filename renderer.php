@@ -29,7 +29,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class tool_editrolesbycap_renderer extends plugin_renderer_base {
-
     /**
      * Render the tool before a capability has been selected.
      *
@@ -57,8 +56,14 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
         $output = '';
         $output .= $this->header();
         $output .= $this->heading(get_string('pluginname', 'tool_editrolesbycap'));
-        $output .= $this->heading(get_string('editrolesfor', 'tool_editrolesbycap',
-                $this->capability_name_full($capability)), 3);
+        $output .= $this->heading(
+            get_string(
+                'editrolesfor',
+                'tool_editrolesbycap',
+                $this->capability_name_full($capability)
+            ),
+            3
+        );
         $output .= $this->role_definitions($roledata, $showadvanced);
         $output .= $this->capability_form($form);
         $output .= $this->footer();
@@ -156,9 +161,11 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
             $attributes['checked'] = 'checked';
         }
 
-        $output .= html_writer::tag('label',
-                html_writer::empty_tag('input', $attributes) . $this->permission_name(CAP_ALLOW),
-                ['for' => $attributes['id']]);
+        $output .= html_writer::tag(
+            'label',
+            html_writer::empty_tag('input', $attributes) . $this->permission_name(CAP_ALLOW),
+            ['for' => $attributes['id']]
+        );
         $cell = new html_table_cell($output);
 
         if ($role->defaultpermission == CAP_ALLOW) {
@@ -213,10 +220,12 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
                 $attributes['checked'] = 'checked';
             }
 
-            $output .= html_writer::tag('label',
-                    html_writer::empty_tag('input', $attributes) .
-                    html_writer::tag('span', $permissionname, ['class' => 'note']),
-                    ['for' => $attributes['id']]);
+            $output .= html_writer::tag(
+                'label',
+                html_writer::empty_tag('input', $attributes) .
+                html_writer::tag('span', $permissionname, ['class' => 'note']),
+                ['for' => $attributes['id']]
+            );
 
             $cell = new html_table_cell($output);
 
@@ -314,12 +323,15 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
      * @return string the HTML to output.
      */
     protected function capability_name_full($capability) {
-        $a = new stdClass;
+        $a = new stdClass();
         $a->name = get_capability_docs_link($capability);
         $a->capabilityname = html_writer::tag('span', $capability->name, ['class' => 'cap-name']);
         $a->risks = $this->risk_icons($capability);
-        return html_writer::tag('span', get_string('capabilitynamewithrisks', 'tool_editrolesbycap', $a),
-                ['class' => 'cap-desc']);
+        return html_writer::tag(
+            'span',
+            get_string('capabilitynamewithrisks', 'tool_editrolesbycap', $a),
+            ['class' => 'cap-desc']
+        );
     }
 
     /**
@@ -344,9 +356,13 @@ class tool_editrolesbycap_renderer extends plugin_renderer_base {
      */
     protected function risk_icon($type) {
         $url = get_docs_url(s(get_string('risks', 'role')));
-        return $this->action_icon($url,
-                new pix_icon('i/' . str_replace('risk', 'risk_', $type),
-                        get_string($type . 'short', 'admin')),
-                new popup_action('click', $url, 'docspopup'));
+        return $this->action_icon(
+            $url,
+            new pix_icon(
+                'i/' . str_replace('risk', 'risk_', $type),
+                get_string($type . 'short', 'admin')
+            ),
+            new popup_action('click', $url, 'docspopup')
+        );
     }
 }

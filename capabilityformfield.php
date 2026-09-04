@@ -43,11 +43,20 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
      * @param mixed $attributes Either a typical HTML attribute string or an associative array
      * @param bool $showchoose add standard moodle "Choose..." option as first item.
      */
-    public function __construct($elementname = null, $elementlabel = null,
-            $attributes = [], $showchoose = false) {
+    public function __construct(
+        $elementname = null,
+        $elementlabel = null,
+        $attributes = [],
+        $showchoose = false
+    ) {
 
-        parent::__construct($elementname, $elementlabel,
-                $this->get_capabitity_optgroups(), $attributes, $showchoose);
+        parent::__construct(
+            $elementname,
+            $elementlabel,
+            $this->get_capabitity_optgroups(),
+            $attributes,
+            $showchoose
+        );
     }
 
     /**
@@ -86,8 +95,11 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
             $a = new stdClass();
             $a->name = get_capability_string($capability->name);
             $a->capabilityname = $capability->name;
-            $currentgroup[$capability->name] = get_string('capabilityandname',
-                    'tool_editrolesbycap', $a);
+            $currentgroup[$capability->name] = get_string(
+                'capabilityandname',
+                'tool_editrolesbycap',
+                $a
+            );
         }
 
         // Remeber to add the currently open optgroup.
@@ -105,8 +117,11 @@ class MoodleQuickForm_capability extends MoodleQuickForm_selectgroups {
         global $PAGE;
         $this->_generateId();
         if (!$this->_flagFrozen) {
-            $PAGE->requires->js_call_amd('tool_editrolesbycap/capabilityformfield',
-                'initCapabilityFormField', [$this->getAttribute('id')]);
+            $PAGE->requires->js_call_amd(
+                'tool_editrolesbycap/capabilityformfield',
+                'initCapabilityFormField',
+                [$this->getAttribute('id')]
+            );
         }
     }
 

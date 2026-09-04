@@ -27,9 +27,11 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
 require_once(dirname(__FILE__) . '/capabilityformfield.php');
 
-MoodleQuickForm::registerElementType('capability',
+MoodleQuickForm::registerElementType(
+    'capability',
     dirname(__FILE__) . '/capabilityformfield.php',
-    'MoodleQuickForm_capability');
+    'MoodleQuickForm_capability'
+);
 
 
 /**
@@ -94,7 +96,8 @@ function tool_editrolesbycap_get_default_permission($role, $capability) {
 function tool_editrolesbycap_load_role_definitions($capability) {
     global $DB;
 
-    $data = $DB->get_records_sql('
+    $data = $DB->get_records_sql(
+        '
                 SELECT r.id AS roleid,
                        r.shortname,
                        r.name,
@@ -106,8 +109,9 @@ function tool_editrolesbycap_load_role_definitions($capability) {
                                              AND rc.capability = :capability
                                              AND rc.contextid = :syscontextid
               ORDER BY r.sortorder, r.name',
-          ['capability' => $capability->name,
-                'syscontextid' => context_system::instance()->id]);
+        ['capability' => $capability->name,
+                'syscontextid' => context_system::instance()->id]
+    );
 
     foreach ($data as $role) {
         $role->name = role_get_name($role);

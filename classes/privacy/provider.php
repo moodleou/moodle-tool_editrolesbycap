@@ -37,7 +37,6 @@ use core_privacy\local\request\writer;
 class provider implements
     \core_privacy\local\metadata\provider,
     \core_privacy\local\request\user_preference_provider {
-
     /**
      * Returns metadata about tool_editrolesbycap.
      *
@@ -59,7 +58,8 @@ class provider implements
         if (isset($showadvanced)) {
             writer::export_user_preference(
                 'tool_editrolesbycap',
-                'definerole_showadvanced', transform::yesno($showadvanced),
+                'definerole_showadvanced',
+                transform::yesno($showadvanced),
                 get_string('privacy:metadata:preference:definerole_showadvanced', 'tool_editrolesbycap')
             );
         }
